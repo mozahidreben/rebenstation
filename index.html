@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reben</title>
+<link rel="icon" type="image/png" href="logo2.png">
+<meta name="theme-color" content="#A50000">
+<meta name="description" content="Reben — Saudi Arabia's leading petroleum retail and transport logistics company. 100+ stations, 50+ fleet vehicles, franchise opportunities.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+<style>
+/* ══════════════════════════════════
+   ROOT & RESET
+══════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --red:#dc2626;--red-dark:#b91c1c;--red-light:#fee2e2;
+  --black:#0a0a0a;--dark:#0f172a;--mid:#374151;
+  --gray:#6b7280;--gray-light:#f8f9fb;--gray-border:#e8eaed;
+  --white:#ffffff;
+  --shadow-xs:0 1px 2px rgba(0,0,0,.04),0 2px 6px rgba(0,0,0,.06);
+  --shadow-sm:0 1px 3px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.06),0 8px 28px rgba(0,0,0,.04);
+  --shadow-md:0 2px 4px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.07),0 24px 56px rgba(0,0,0,.06);
+  --shadow-red:0 4px 12px rgba(220,38,38,.18),0 12px 32px rgba(220,38,38,.22),0 24px 48px rgba(220,38,38,.10);
+  --tr:.3s cubic-bezier(.4,0,.2,1);
+  --radius:18px;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--dark);overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background 0.3s ease, color 0.3s ease;}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button{font-family:inherit;cursor:pointer}
+.container{max-width:1280px;margin:0 auto;padding:0 2rem}
+.container-wide{max-width:1440px;margin:0 auto;padding:0 2.5rem}
+
+/* ══════════════════════════════════
+   UTILITY
+══════════════════════════════════ */
+.red{color:var(--red)}
+.fade-up{opacity:0;transform:translateY(36px)}
+.section-label{display:inline-flex;align-items:center;gap:.45rem;font-size:.68rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:.9rem;padding:.3rem .75rem;background:rgba(220,38,38,.07);border-radius:99px;border:1px solid rgba(220,38,38,.15)}
+.section-title{font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-.03em;line-height:1.12;margin-bottom:.6rem}
+.section-sub{font-size:1rem;color:var(--gray);line-height:1.75;max-width:600px}
+.rule{width:40px;height:3px;background:linear-gradient(90deg,var(--red),rgba(220,38,38,.15));border-radius:99px;margin:.9rem 0 2.5rem}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:99px;font-weight:700;font-size:.92rem;transition:var(--tr);border:2px solid transparent;white-space:nowrap;letter-spacing:.01em;will-change:transform}
+.btn-primary{background:linear-gradient(135deg,#ef4444 0%,#b91c1c 100%);color:#fff;box-shadow:var(--shadow-red),inset 0 1px 0 rgba(255,255,255,.18)}
+.btn-primary:hover{background:linear-gradient(135deg,#dc2626 0%,#991b1b 100%);transform:translateY(-3px);box-shadow:0 8px 20px rgba(220,38,38,.2),0 20px 48px rgba(220,38,38,.28),inset 0 1px 0 rgba(255,255,255,.18)}
+.btn-outline{background:transparent;border-color:var(--red);color:var(--red)}
+.btn-outline:hover{background:var(--red);color:#fff;transform:translateY(-3px);box-shadow:var(--shadow-red)}
+.btn-ghost{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.2);backdrop-filter:blur(8px)}
+.btn-ghost:hover{background:rgba(255,255,255,.15)}
+.btn-sm{padding:.58rem 1.35rem;font-size:.8rem}
+.btn i{font-size:.85em}
+
+/* ICON BUTTONS */
+.icon-btn{background:transparent;border:1px solid var(--gray-border);color:var(--mid);display:inline-flex;align-items:center;justify-content:center;gap:.4rem;padding:.5rem .85rem;border-radius:10px;font-size:.82rem;font-weight:600;transition:var(--tr);min-width:40px;height:40px;will-change:transform, background, color}
+.icon-btn:hover{color:var(--red);border-color:rgba(220,38,38,.3);background:var(--red-light);transform:scale(1.02)}
+
+/* DARK MODE */
+body.dark-mode {
+  --white: #0c0c0c;
+  --dark: #ffffff;
+  --mid: #e5e7eb;
+  --gray: #9ca3af;
+  --gray-light: #151515;
+  --gray-border: #2a2a2a;
+  background: var(--white);
+  color: var(--dark);
+}
+body.dark-mode .navbar { background: rgba(12,12,12,0.75); backdrop-filter: blur(12px); }
+body.dark-mode .nav-link { color: var(--dark); }
+body.dark-mode .nav-link:hover { color: var(--red); }
+body.dark-mode .mega-menu { background: rgba(12,12,12,0.9); backdrop-filter: blur(20px); border-color: var(--gray-border); }
+body.dark-mode .mega-link:hover { background: var(--gray-light); }
+body.dark-mode .mega-link-text strong { color: var(--dark); }
+body.dark-mode .hamburger span { background: var(--dark); }
+body.dark-mode .pillar, body.dark-mode .fuel-card, body.dark-mode .ps-card { background: var(--white); border-color: var(--gray-border); }
+body.dark-mode .about-section, body.dark-mode .petrol-section, body.dark-mode .franchise-section { background: var(--gray-light); }
+body.dark-mode .drawer-panel { background: var(--white); }
+body.dark-mode .drawer-link { color: var(--dark); }
+body.dark-mode .drawer-close { background: var(--gray-light); color: var(--dark); border-color: var(--gray-border); }
+body.dark-mode .icon-btn { color: var(--dark); border-color: var(--gray-border); }
+body.dark-mode .icon-btn:hover { background: var(--red); color: #fff; border-color: var(--red); }
+body.dark-mode .waie-box { background: #151515; color: #fff; border: 1px solid var(--gray-border); }
+body.dark-mode .sticky-btn.dark { background: var(--gray-light); color: var(--dark); }
+body.dark-mode .sticky-label { background: var(--gray-light); color: var(--dark); }
+body.dark-mode .navbar::after { background: linear-gradient(90deg, transparent, var(--red), transparent); }
+body.dark-mode .contact-form-wrap{background:rgba(255,255,255,.03);border-color:var(--gray-border)}
+body.dark-mode .petrol-section,body.dark-mode .fleet-section,body.dark-mode .locator-section{background:var(--white)}
+
+/* ══════════════════════════════════
+   NAVBAR
+══════════════════════════════════ */
+.nav-container { max-width: 100%; margin: 0 auto; padding: 0 1rem; width: 100%; }
+.navbar {
+  position: sticky; top: 0; z-index: 900;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+  transition: background 0.25s ease, backdrop-filter 0.25s ease, box-shadow 0.25s ease, padding 0.25s ease;
+  box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 4px 24px rgba(0,0,0,.04);
+  will-change: background, box-shadow, backdrop-filter;
+}
+.navbar::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBudW1PY3RhdmVzPSIzIiAvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iMC4wMjUiIC8+PC9zdmc+');
+  opacity: 0.4; mix-blend-mode: overlay; z-index: 0;
+}
+.navbar::after {
+  content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--red), transparent);
+  opacity: 0; transition: opacity 0.4s ease; pointer-events: none; z-index: 2;
+}
+.navbar.floating::after { opacity: 1; }
+.navbar.floating {
+  background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(28px) saturate(200%);
+  box-shadow: 0 1px 0 rgba(0,0,0,.05), 0 8px 32px rgba(0,0,0,.07), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+body.dark-mode .navbar.floating {
+  background: rgba(12,12,12,0.85); backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: auto; min-height: 70px; padding: 0.3rem 0; position: relative; z-index: 1;
+  transition: min-height 0.3s ease;
+}
+.navbar.scrolled-logo .nav-inner { min-height: 60px; }
+
+.nav-logo { display: flex; align-items: center; justify-content: flex-start; padding: 0; will-change: transform; }
+.nav-logo-img {
+  width: 180px; height: auto; max-width: none; display: block; object-fit: contain;
+  transition: width 0.3s cubic-bezier(0.2, 0.9, 0.4, 1), filter 0.3s;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.02));
+}
+.navbar.scrolled-logo .nav-logo-img { width: 130px; }
+
+@media (max-width: 1200px) {
+  .nav-logo-img { width: 140px; }
+  .navbar.scrolled-logo .nav-logo-img { width: 110px; }
+  .nav-container { padding: 0 1.5rem; }
+}
+@media (max-width: 900px) {
+  .nav-inner { min-height: 60px; }
+  .nav-logo-img { width: 120px; }
+  .navbar.scrolled-logo .nav-logo-img { width: 100px; }
+}
+@media (max-width: 680px) {
+  .nav-inner { min-height: 55px; }
+  .nav-logo-img { width: 100px; }
+  .navbar.scrolled-logo .nav-logo-img { width: 90px; }
+  .nav-container { padding: 0 1rem; }
+}
+
+.nav-menu{display:flex;align-items:stretch}
+.nav-item{position:relative;display:flex;align-items:center}
+.nav-link {
+  display: flex; align-items: center; gap: .3rem; padding: 0 0.8rem; height: 100%;
+  font-size: .95rem; font-weight: 600; color: var(--mid); transition: color 0.2s ease, font-weight 0.2s ease;
+  white-space: nowrap; border-bottom: 3px solid transparent; position: relative;
+}
+.nav-link::after {
+  content: ''; position: absolute; bottom: -3px; left: 50%; width: 0; height: 3px;
+  background: var(--red); transition: width 0.3s cubic-bezier(0.2, 0.9, 0.4, 1), left 0.3s cubic-bezier(0.2, 0.9, 0.4, 1);
+  border-radius: 3px;
+}
+.nav-link:hover { color: var(--red); font-weight: 700; }
+.nav-link:hover::after { width: 100%; left: 0; }
+.nav-item:hover .nav-link { color: var(--red); }
+.nav-link i{font-size:.65rem;transition:transform .25s ease}
+.nav-item:hover .nav-link i{transform:rotate(180deg)}
+
+.nav-link.active-section { color: var(--red); text-shadow: 0 0 8px rgba(220,38,38,0.3); }
+.nav-link.active-section::after { width: 100%; left: 0; background: var(--red); box-shadow: 0 0 10px var(--red); }
+
+.nav-actions{display:flex;align-items:center;gap:0.6rem;padding:0 0 0 0.5rem}
+
+.hamburger{display:none;flex-direction:column;gap:5px;padding:.5rem;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.hamburger span{display:block;width:22px;height:2.5px;background:var(--dark);border-radius:2px;transition:var(--tr)}
+
+/* MEGA MENU */
+.mega-menu {
+  position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
+  background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border-radius: 20px; box-shadow: 0 4px 8px rgba(0,0,0,.05), 0 24px 64px rgba(0,0,0,.1), 0 0 0 1px rgba(220,38,38,.06);
+  border: 1px solid rgba(255,255,255,0.3); padding: 2rem; opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.25s cubic-bezier(0.2,0.9,0.4,1), transform 0.25s cubic-bezier(0.2,0.9,0.4,1), visibility 0.25s;
+  min-width: 680px; z-index: 100; will-change: transform, opacity;
+}
+body.dark-mode .mega-menu {
+  background: rgba(12,12,12,0.85); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.08);
+}
+.nav-item:hover .mega-menu { opacity: 1; visibility: visible; pointer-events: all; transform: translateX(-50%) translateY(0); }
+
+.mega-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.mega-col { opacity: 0; transform: translateY(8px); transition: opacity 0.3s ease, transform 0.3s ease; transition-delay: 0s; }
+.nav-item:hover .mega-col { opacity: 1; transform: translateY(0); }
+.nav-item:hover .mega-col:nth-child(1) { transition-delay: 0.05s; }
+.nav-item:hover .mega-col:nth-child(2) { transition-delay: 0.12s; }
+.nav-item:hover .mega-col:nth-child(3) { transition-delay: 0.19s; }
+
+.mega-col h5{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid var(--gray-border)}
+.mega-link {
+  display: flex; align-items: flex-start; gap: .75rem; padding: .65rem .7rem; border-radius: 12px;
+  transition: background .15s ease, transform 0.15s ease; cursor: pointer; position: relative;
+}
+.mega-link:hover { background: rgba(220,38,38,0.08); transform: translateX(4px); }
+body.dark-mode .mega-link:hover { background: rgba(220,38,38,0.15); }
+.mega-link-icon {
+  width: 36px; height: 36px; border-radius: 10px; background: var(--red-light); color: var(--red);
+  display: flex; align-items: center; justify-content: center; font-size: .9rem; flex-shrink: 0; transition: var(--tr);
+}
+.mega-link:hover .mega-link-icon { background: var(--red); color: #fff; transform: scale(1.05); }
+.mega-link-text strong{display:block;font-size:.88rem;font-weight:700;color:var(--dark);margin-bottom:.1rem}
+.mega-link-text span{font-size:.78rem;color:var(--gray);line-height:1.4}
+.mega-menu.narrow{min-width:320px;padding:1.2rem}
+.mega-menu.narrow .mega-grid{grid-template-columns:1fr}
+
+.mega-link-preview {
+  width: 40px; height: 40px; border-radius: 8px; background: var(--red-light);
+  display: flex; align-items: center; justify-content: center; margin-left: auto; opacity: 0.6; transition: 0.2s ease;
+}
+.mega-link:hover .mega-link-preview { opacity: 1; background: var(--red); color: white; }
+.magnetic-btn { will-change: transform; transition: transform 0.15s ease-out; }
+
+/* ══════════════════════════════════
+   HERO
+══════════════════════════════════ */
+.hero{position:relative;height:100svh;min-height:600px;overflow:hidden}
+#heroVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.4) 55%,rgba(0,0,0,.15) 100%)}
+.hero-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 5%}
+.hero h1{font-size:clamp(2.4rem,5.5vw,5rem);font-weight:900;line-height:1.05;letter-spacing:-.05em;color:#fff;max-width:780px;margin-bottom:1.4rem}
+.hero h1 em{background:linear-gradient(90deg,#ef4444,#f87171);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal}
+.hero p{font-size:1.15rem;color:rgba(255,255,255,.75);max-width:540px;line-height:1.7;margin-bottom:2.2rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.5);font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+
+.scroll-dot {
+  width: 32px; height: 52px; border: 2px solid rgba(255,255,255,.3); border-radius: 99px; position: relative; backdrop-filter: blur(4px);
+}
+.scroll-dot::after {
+  content: ''; position: absolute; top: 6px; left: 50%; transform: translateX(-50%); width: 6px; height: 10px; background: var(--red);
+  border-radius: 40% 40% 50% 50% / 30% 30% 70% 70%; box-shadow: 0 0 12px var(--red); animation: liquidDrop 1.8s ease-in-out infinite;
+}
+@keyframes liquidDrop {
+  0% { top: 6px; opacity: 1; height: 10px; border-radius: 40% 40% 50% 50% / 30% 30% 70% 70%; }
+  40% { top: 18px; opacity: 0.8; height: 14px; border-radius: 50% 50% 40% 40% / 40% 40% 60% 60%; }
+  80% { top: 32px; opacity: 0.3; height: 8px; }
+  100% { top: 6px; opacity: 1; height: 10px; }
+}
+.hero-badges{position:absolute;bottom:3rem;right:5%;z-index:2;display:flex;gap:1rem}
+.hbadge{background:rgba(255,255,255,.08);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:1rem 1.4rem;color:#fff;text-align:center;transition:var(--tr)}
+.hbadge:hover{background:rgba(220,38,38,.3);border-color:rgba(220,38,38,.5)}
+.hbadge-num{font-size:1.8rem;font-weight:900;line-height:1;color:var(--red);letter-spacing:-.03em}
+.hbadge-label{font-size:.72rem;font-weight:600;opacity:.75;margin-top:.2rem}
+
+/* ══════════════════════════════════
+   LIVE TICKER
+══════════════════════════════════ */
+.ticker-bar{background:linear-gradient(90deg,#b91c1c 0%,#dc2626 50%,#b91c1c 100%);overflow:hidden;padding:.52rem 0;border-bottom:1px solid rgba(0,0,0,.08);box-shadow:0 2px 8px rgba(220,38,38,.15)}
+.ticker-track{display:flex;white-space:nowrap;animation:tickerMove 35s linear infinite}
+.ticker-track:hover{animation-play-state:paused}
+.ticker-item{display:inline-flex;align-items:center;gap:.5rem;margin-right:3.5rem;font-size:.83rem;font-weight:600;color:#fff}
+.ticker-item i{color:rgba(255,255,255,.7);font-size:.75rem}
+.ticker-sep{color:rgba(255,255,255,.35);margin-right:3.5rem}
+@keyframes tickerMove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ══════════════════════════════════
+   ABOUT
+══════════════════════════════════ */
+.about-section{padding:4rem 0;background:var(--gray-light)}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-img{border-radius:28px;overflow:hidden;position:relative;box-shadow:0 4px 8px rgba(0,0,0,.06),0 16px 48px rgba(0,0,0,.10),0 40px 80px rgba(0,0,0,.06)}
+.about-img img{width:100%;height:420px;object-fit:cover;transition:transform 0.9s cubic-bezier(0.2,0.9,0.4,1)}
+.about-img:hover img{transform:scale(1.03)}
+.about-text h2{margin-bottom:.3rem}
+.about-pillars{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.pillar{display:flex;gap:.8rem;align-items:flex-start;padding:1.1rem;border-radius:14px;background:var(--white);border:1px solid var(--gray-border);transition:var(--tr);position:relative;overflow:hidden;will-change:transform, box-shadow}
+.pillar::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--red);transform:scaleY(0);transform-origin:bottom;transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);border-radius:0 2px 2px 0}
+.pillar:hover{border-color:rgba(220,38,38,.18);box-shadow:0 4px 16px rgba(0,0,0,.06),0 12px 32px rgba(220,38,38,.06);transform:translateY(-2px)}
+.pillar:hover::before{transform:scaleY(1)}
+.pillar-icon{width:38px;height:38px;border-radius:10px;background:var(--red-light);display:flex;align-items:center;justify-content:center;color:var(--red);flex-shrink:0;font-size:.9rem;transition:var(--tr)}
+.pillar:hover .pillar-icon{background:var(--red);color:#fff}
+.pillar strong{font-size:.88rem;font-weight:700;display:block;margin-bottom:.2rem}
+.pillar p{font-size:.78rem;color:var(--gray);line-height:1.55}
+
+/* ══════════════════════════════════
+   PETROLEUM SERVICES
+══════════════════════════════════ */
+.petrol-section{padding:4rem 0;background:var(--white)}
+.petrol-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-bottom:0}
+.fuel-grades{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+.fuel-card{border:1px solid var(--gray-border);border-radius:18px;padding:1.6rem 1.2rem;text-align:center;transition:var(--tr);position:relative;overflow:hidden;background:var(--white);will-change:transform, box-shadow}
+.fuel-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--red),transparent);opacity:0;transition:0.3s ease}
+.fuel-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(220,38,38,.04),transparent);opacity:0;transition:0.3s ease}
+.fuel-card:hover{border-color:rgba(220,38,38,.2);transform:translateY(-7px);box-shadow:0 4px 12px rgba(0,0,0,.05),0 16px 40px rgba(220,38,38,.12),0 32px 64px rgba(220,38,38,.06)}
+.fuel-card:hover::before{opacity:1}
+.fuel-card:hover::after{opacity:1}
+.fuel-octane{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;line-height:1;color:var(--red);letter-spacing:.04em}
+.fuel-type{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--gray);margin-top:.3rem}
+.fuel-desc{font-size:.78rem;color:var(--mid);margin-top:.5rem;line-height:1.55}
+.waie-box{background:linear-gradient(145deg,#0f172a 0%,#1e293b 100%);border-radius:24px;padding:2.8rem;color:#fff;position:relative;overflow:hidden;transition:background 0.3s ease;box-shadow:0 4px 12px rgba(0,0,0,.12),0 24px 64px rgba(0,0,0,.18)}
+.waie-box::before{content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(220,38,38,.3),transparent 70%)}
+.waie-label{font-size:.65rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.waie-label::before{content:'';display:inline-block;width:18px;height:2px;background:var(--red);border-radius:2px}
+.waie-box h3{font-size:1.75rem;font-weight:800;margin-bottom:.7rem;letter-spacing:-.025em;line-height:1.2}
+.waie-box p{font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:1.6rem}
+.waie-features{display:flex;flex-direction:column;gap:.6rem}
+.waie-feat{display:flex;align-items:center;gap:.75rem;font-size:.84rem;color:rgba(255,255,255,.7);padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.waie-feat:last-child{border-bottom:none}
+.waie-feat i{color:var(--red);width:16px;text-align:center;flex-shrink:0}
+.petrol-services{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:1rem}
+.ps-card{padding:2rem 1.5rem;border-radius:20px;border:1px solid var(--gray-border);transition:var(--tr);text-align:center;background:var(--white);position:relative;overflow:hidden;will-change:transform, box-shadow}
+.ps-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--red),transparent);opacity:0;transition:0.3s ease}
+.ps-card:hover{border-color:rgba(220,38,38,.15);box-shadow:0 4px 16px rgba(0,0,0,.06),0 20px 48px rgba(220,38,38,.08);transform:translateY(-7px)}
+.ps-card:hover::after{opacity:1}
+.ps-icon{width:58px;height:58px;border-radius:16px;background:var(--red-light);display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;transition:var(--tr)}
+.ps-icon i{font-size:1.4rem;color:var(--red);transition:var(--tr)}
+.ps-card:hover .ps-icon{background:linear-gradient(135deg,#ef4444,#b91c1c);box-shadow:0 8px 20px rgba(220,38,38,.3)}
+.ps-card:hover .ps-icon i{color:#fff}
+.ps-card h4{font-size:1rem;font-weight:700;margin-bottom:.4rem;letter-spacing:-.01em}
+.ps-card p{font-size:.82rem;color:var(--gray);line-height:1.6}
+
+/* ══════════════════════════════════
+   TRANSPORT FLEET
+══════════════════════════════════ */
+.fleet-section{padding:4rem 0;background:var(--white);overflow:hidden;position:relative}
+.fleet-section::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(220,38,38,.03) 0%,transparent 55%);pointer-events:none}
+.fleet-layout{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;border-radius:28px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.06),0 24px 64px rgba(0,0,0,.12),0 48px 96px rgba(0,0,0,.06)}
+.fleet-img-side{position:relative;min-height:540px;overflow:hidden}
+.fleet-img-side img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform 1.1s cubic-bezier(.2,.9,.4,1)}
+.fleet-img-side:hover img{transform:scale(1.03)}
+.fleet-img-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.08) 0%,rgba(0,0,0,.52) 100%)}
+.fleet-road-tag{position:absolute;bottom:2rem;right:2rem;background:rgba(6,10,20,.7);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:.65rem 1.1rem;color:#fff;font-size:.77rem;font-weight:700;display:flex;align-items:center;gap:.5rem}
+.fleet-road-tag i{color:var(--red)}
+.fleet-content-side{background:var(--white);padding:4rem 3.5rem;display:flex;flex-direction:column;justify-content:center}
+body.dark-mode .fleet-content-side{background:var(--gray-light)}
+.fleet-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem 0}
+.fleet-kpi{text-align:center;padding:1.4rem 1rem;background:var(--gray-light);border-radius:16px;border:1px solid var(--gray-border);transition:var(--tr);position:relative;overflow:hidden;will-change:transform, box-shadow}
+body.dark-mode .fleet-kpi{background:var(--white)}
+.fleet-kpi::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--red),transparent);opacity:0;transition:0.3s ease}
+.fleet-kpi:hover{border-color:rgba(220,38,38,.18);background:rgba(220,38,38,.03);transform:translateY(-4px);box-shadow:var(--shadow-sm)}
+.fleet-kpi:hover::before{opacity:1}
+.fleet-kpi-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;line-height:1;color:var(--red)}
+.fleet-kpi-label{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--gray);margin-top:.3rem}
+.fleet-features{display:flex;flex-direction:column;gap:.7rem;margin:1.8rem 0}
+.fleet-feat{display:flex;align-items:center;gap:.9rem;padding:.85rem 1rem;border-radius:14px;background:var(--gray-light);border:1px solid transparent;transition:var(--tr);will-change:transform, box-shadow}
+body.dark-mode .fleet-feat{background:var(--white)}
+.fleet-feat:hover{border-color:rgba(220,38,38,.15);background:rgba(220,38,38,.03);box-shadow:0 4px 16px rgba(220,38,38,.06)}
+.fleet-feat-icon{width:38px;height:38px;border-radius:10px;background:var(--red-light);display:flex;align-items:center;justify-content:center;color:var(--red);flex-shrink:0;font-size:.9rem;transition:var(--tr)}
+.fleet-feat:hover .fleet-feat-icon{background:linear-gradient(135deg,#ef4444,#b91c1c);color:#fff;box-shadow:0 4px 10px rgba(220,38,38,.25)}
+.fleet-feat-text strong{font-size:.88rem;font-weight:700;display:block;margin-bottom:.15rem;letter-spacing:-.01em}
+.fleet-feat-text span{font-size:.77rem;color:var(--gray)}
+
+/* ══════════════════════════════════
+   STATION LOCATOR
+══════════════════════════════════ */
+.locator-section{padding:4rem 0;background:var(--white);overflow:hidden}
+.locator-head{text-align:center;max-width:640px;margin:0 auto 3rem}
+.locator-head .section-sub{margin:0 auto}
+.locator-search-bar{display:flex;gap:1rem;max-width:680px;margin:2rem auto 0;background:var(--white);border-radius:99px;padding:.55rem .55rem .55rem 1.5rem;border:1.5px solid var(--gray-border);box-shadow:0 2px 8px rgba(0,0,0,.05),0 8px 32px rgba(0,0,0,.06);transition:var(--tr);align-items:center}
+body.dark-mode .locator-search-bar{background:#1a1a1a;border-color:#2a2a2a}
+.locator-search-bar:focus-within{border-color:var(--red);box-shadow:0 0 0 4px rgba(220,38,38,.07),0 8px 32px rgba(0,0,0,.08)}
+.locator-search-bar input{flex:1;border:none;outline:none;background:transparent;font-family:'Inter',sans-serif;font-size:.95rem;color:var(--dark);min-width:0}
+body.dark-mode .locator-search-bar input{color:#fff}
+.locator-search-bar input::placeholder{color:var(--gray)}
+.locator-search-bar button{background:linear-gradient(135deg,#ef4444,#b91c1c);color:#fff;border:none;border-radius:99px;padding:.72rem 1.6rem;font-weight:700;font-size:.88rem;cursor:pointer;transition:var(--tr);white-space:nowrap;display:flex;align-items:center;gap:.5rem;box-shadow:0 4px 12px rgba(220,38,38,.2),inset 0 1px 0 rgba(255,255,255,.15);will-change:transform;flex-shrink:0}
+.locator-search-bar button:hover{background:linear-gradient(135deg,#dc2626,#991b1b);transform:scale(1.03);box-shadow:0 8px 20px rgba(220,38,38,.25)}
+.locator-map-area{border-radius:28px;overflow:hidden;position:relative;margin-bottom:2rem;box-shadow:0 4px 12px rgba(0,0,0,.06),0 24px 64px rgba(0,0,0,.12)}
+.locator-map-mock{
+  width:100%; height:440px;
+  background: #f8f9fb url('map.png') center/cover no-repeat;
+  position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden;
+}
+body.dark-mode .locator-map-mock{ background-color: #1e1e1e; }
+
+.map-grid-lines, .map-roads, .map-road { display: none; }
+
+.map-pin{position:absolute;display:flex;flex-direction:column;align-items:center;cursor:pointer;transition:var(--tr)}
+.map-pin:hover{transform:scale(1.2) translateY(-5px);z-index:10}
+.map-pin-dot{width:36px;height:36px;border-radius:50%;background:linear-gradient(145deg,#ef4444,#b91c1c);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem;box-shadow:0 0 0 6px rgba(220,38,38,.2),0 8px 20px rgba(220,38,38,.4),inset 0 1px 0 rgba(255,255,255,.2);animation:pinPulse 2.5s ease-in-out infinite}
+.map-pin-dot.active{background:linear-gradient(145deg,#4ade80,#15803d);box-shadow:0 0 0 6px rgba(34,197,94,.2),0 8px 20px rgba(34,197,94,.4),inset 0 1px 0 rgba(255,255,255,.2)}
+.map-pin-label{background:rgba(6,13,31,.88);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:.67rem;font-weight:700;padding:.28rem .7rem;border-radius:7px;margin-top:.45rem;white-space:nowrap;opacity:0;transition:.2s ease;transform:translateY(5px)}
+.map-pin:hover .map-pin-label{opacity:1;transform:translateY(0)}
+@keyframes pinPulse{0%,100%{box-shadow:0 0 0 6px rgba(220,38,38,.2),0 8px 20px rgba(220,38,38,.4)}50%{box-shadow:0 0 0 14px rgba(220,38,38,.06),0 8px 20px rgba(220,38,38,.4)}}
+.map-pin-dot.active{animation-name:pinPulseGreen}
+@keyframes pinPulseGreen{0%,100%{box-shadow:0 0 0 6px rgba(34,197,94,.2),0 8px 20px rgba(34,197,94,.4)}50%{box-shadow:0 0 0 14px rgba(34,197,94,.06),0 8px 20px rgba(34,197,94,.4)}}
+.map-center-badge{background:rgba(6,13,31,.7);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:1.3rem 2.2rem;text-align:center;color:#fff;z-index:2;box-shadow:0 0 0 1px rgba(220,38,38,.08),0 24px 60px rgba(0,0,0,.4)}
+.map-center-badge h4{font-size:1.15rem;font-weight:800;margin-bottom:.3rem;letter-spacing:-.02em}
+.map-center-badge p{font-size:.76rem;color:rgba(255,255,255,.45)}
+.map-overlay-btn{position:absolute;top:1.2rem;right:1.2rem;background:rgba(6,13,31,.8);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.7rem 1.2rem;font-size:.8rem;font-weight:700;color:#fff;cursor:pointer;display:flex;align-items:center;gap:.5rem;transition:var(--tr);z-index:5;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+.map-overlay-btn:hover{background:var(--red);border-color:var(--red);transform:translateY(-2px);box-shadow:0 8px 24px rgba(220,38,38,.3)}
+.map-overlay-btn i{color:rgba(255,255,255,.6);font-size:.85rem;transition:var(--tr)}
+.map-overlay-btn:hover i{color:#fff}
+
+/* ══════════════════════════════════
+   FRANCHISE
+══════════════════════════════════ */
+.franchise-section{padding:4rem 0;background:var(--gray-light)}
+.franchise-layout{display:grid;grid-template-columns:5fr 7fr;gap:5rem;align-items:start}
+.franchise-img{border-radius:28px;overflow:hidden;position:sticky;top:6rem;box-shadow:0 4px 8px rgba(0,0,0,.06),0 20px 56px rgba(0,0,0,.10)}
+.franchise-img img{width:100%;height:500px;object-fit:cover}
+.franchise-content h2{margin-bottom:.3rem}
+.franchise-benefits{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin:2rem 0}
+.fb-item{display:flex;align-items:center;gap:.6rem;font-size:.84rem;font-weight:600;color:var(--mid)}
+.fb-item i{color:var(--red);font-size:.8rem;flex-shrink:0}
+.franchise-steps{display:flex;flex-direction:column;gap:0;margin-top:2rem}
+.fstep{display:flex;gap:1.2rem;position:relative}
+.fstep:not(:last-child)::after{content:'';position:absolute;left:21px;top:52px;bottom:0;width:2px;background:linear-gradient(180deg,rgba(220,38,38,.25),rgba(220,38,38,.05))}
+.fstep-num{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#ef4444,#b91c1c);color:#fff;font-size:1.05rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1;transition:var(--tr);box-shadow:0 4px 12px rgba(220,38,38,.25)}
+.fstep-body{padding:.2rem 0 2rem}
+.fstep-body strong{font-size:.95rem;font-weight:800;display:block;margin-bottom:.3rem;letter-spacing:-.01em}
+.fstep-body p{font-size:.82rem;color:var(--gray);line-height:1.6}
+.fstep:hover .fstep-num{background:linear-gradient(135deg,#1e293b,#0f172a);transform:scale(1.08);box-shadow:0 4px 16px rgba(0,0,0,.2)}
+
+/* ══════════════════════════════════
+   CONTACT US
+══════════════════════════════════ */
+.contact-section { position: relative; isolation: isolate; background: var(--gray-light); padding: 2.5rem 0; }
+.contact-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 30% 30%, rgba(220,38,38,0.03) 0%, transparent 70%); pointer-events: none; z-index: 0; }
+.contact-layout { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1.2fr; gap: 2rem; align-items: stretch; }
+.contact-card { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius: 1.5rem; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 35px -12px rgba(0,0,0,0.25); transition: transform 0.25s ease, box-shadow 0.25s ease; padding: 1.8rem; display: flex; flex-direction: column; will-change: transform; }
+.contact-card:hover { transform: translateY(-3px); box-shadow: 0 25px 40px -15px rgba(0,0,0,0.3); }
+.contact-card .contact-card-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
+.contact-card h3 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; margin: 0.25rem 0 0.5rem; background: linear-gradient(130deg, #ffffff, #e2e8f0); -webkit-background-clip: text; background-clip: text; color: transparent; }
+body.dark-mode .contact-card h3 { background: linear-gradient(130deg, #f1f5f9, #cbd5e1); -webkit-background-clip: text; background-clip: text; }
+.contact-card > p { color: rgba(255,255,255,0.6); font-size: 0.85rem; line-height: 1.5; margin-bottom: 1.2rem; }
+.contact-info-list { display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 0; }
+.contact-info-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 1rem; padding: 0.7rem 1rem; display: flex; align-items: center; gap: 0.8rem; transition: all 0.2s ease; }
+.contact-info-item:hover { background: rgba(220,38,38,0.1); border-color: rgba(220,38,38,0.4); transform: translateX(4px); }
+.ci-icon { width: 38px; height: 38px; border-radius: 0.75rem; background: rgba(220,38,38,0.2); display: flex; align-items: center; justify-content: center; color: var(--red); font-size: 0.9rem; flex-shrink: 0; }
+.contact-info-item:hover .ci-icon { background: var(--red); color: white; }
+.ci-body strong { display: block; font-size: 0.85rem; font-weight: 700; color: white; margin-bottom: 0.1rem; }
+.ci-body span { font-size: 0.75rem; color: rgba(255,255,255,0.5); line-height: 1.4; }
+.contact-form-wrap { background: var(--white); border-radius: 1.5rem; border: 1px solid var(--gray-border); padding: 1.8rem; transition: box-shadow 0.2s ease; }
+.contact-form-wrap h3 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.25rem; }
+.contact-form-wrap p { font-size: 0.8rem; color: var(--gray); margin-bottom: 1.2rem; }
+.cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+.cf-group { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 0.8rem; }
+.cf-group label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--mid); }
+.cf-group input, .cf-group select, .cf-group textarea { padding: 0.7rem 1rem; border-radius: 0.9rem; border: 1.5px solid var(--gray-border); background: var(--white); font-size: 0.85rem; transition: all 0.2s ease; outline: none; -webkit-appearance: none; font-family: inherit; }
+body.dark-mode .cf-group input, body.dark-mode .cf-group select, body.dark-mode .cf-group textarea { background: #111; border-color: #2c2c2c; color: #fff; }
+.cf-group input:focus, .cf-group select:focus, .cf-group textarea:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(220,38,38,0.1); }
+.cf-group textarea { min-height: 90px; resize: vertical; }
+.cf-submit { width: 100%; padding: 0.8rem; background: linear-gradient(105deg, #dc2626, #b91c1c); color: #fff; border: none; border-radius: 1.2rem; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all 0.25s ease; display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 0.25rem; will-change: transform; min-height: 48px; }
+.cf-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 20px -6px rgba(220,38,38,0.5); }
+
+/* ══════════════════════════════════
+   STICKY CTA & MOBILE DRAWER
+══════════════════════════════════ */
+.sticky-cta{position:fixed;bottom:2rem;right:2rem;z-index:800;display:flex;flex-direction:column;gap:.6rem;align-items:flex-end;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s ease, transform .3s ease}
+.sticky-cta.visible{opacity:1;pointer-events:all;transform:translateY(0)}
+.sticky-btn{width:50px;height:50px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;font-size:1.05rem;cursor:pointer;transition:var(--tr);box-shadow:0 4px 12px rgba(0,0,0,.15),0 8px 24px rgba(0,0,0,.08);will-change:transform;-webkit-tap-highlight-color:transparent}
+.sticky-btn:hover{transform:scale(1.12)}
+.sticky-btn.red{background:linear-gradient(135deg,#ef4444,#b91c1c);color:#fff;box-shadow:0 4px 12px rgba(220,38,38,.2),0 8px 24px rgba(220,38,38,.12)}
+.sticky-btn.dark{background:linear-gradient(135deg,#1e293b,#0f172a);color:#fff}
+.sticky-label{font-size:.67rem;font-weight:700;background:var(--dark);color:#fff;padding:.22rem .65rem;border-radius:99px;opacity:0;transform:translateX(8px);transition:.2s ease;white-space:nowrap}
+.sticky-row{display:flex;align-items:center;gap:.5rem}
+.sticky-row:hover .sticky-label{opacity:1;transform:translateX(0)}
+
+.mobile-drawer{position:fixed;inset:0;z-index:980;pointer-events:none}
+.drawer-bg{position:absolute;inset:0;background:rgba(0,0,0,.55);opacity:0;transition:.3s ease;backdrop-filter:blur(2px)}
+.drawer-panel{position:absolute;right:0;top:0;bottom:0;width:min(340px,92vw);background:var(--white);padding:2rem 1.5rem;overflow-y:auto;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);box-shadow:-4px 0 40px rgba(0,0,0,.12)}
+.drawer-open .drawer-bg{opacity:1;pointer-events:all}
+.drawer-open .drawer-panel{transform:translateX(0);pointer-events:all}
+.drawer-close{position:absolute;top:1rem;right:1rem;width:40px;height:40px;border-radius:10px;border:1px solid var(--gray-border);background:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;color:var(--dark);transition:var(--tr);-webkit-tap-highlight-color:transparent}
+.drawer-close:hover{background:var(--red);color:#fff;border-color:var(--red)}
+.drawer-logo{display:flex;align-items:center;justify-content:center;margin-bottom:2rem}
+.drawer-logo-img{width:160px;height:auto;object-fit:contain}
+.drawer-section{margin-bottom:1.5rem}
+.drawer-section h5{font-size:.65rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);margin-bottom:.75rem;padding-left:.5rem}
+.drawer-link{display:flex;align-items:center;gap:.7rem;padding:.75rem .7rem;border-radius:12px;font-size:.88rem;font-weight:600;color:var(--dark);transition:.15s ease;min-height:44px;-webkit-tap-highlight-color:transparent}
+.drawer-link:hover{background:var(--gray-light);color:var(--red);padding-left:1rem}
+.drawer-link i{width:20px;text-align:center;color:var(--red)}
+
+/* ══════════════════════════════════
+   FOOTER
+══════════════════════════════════ */
+.site-footer{background:linear-gradient(160deg,#050a14 0%,#080e1c 60%,#0a1020 100%);color:#fff;padding:1.2rem 0 0;position:relative;overflow:hidden}
+.site-footer::before{content:'';position:absolute;top:-160px;right:-160px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(220,38,38,.1),transparent 70%);pointer-events:none}
+.site-footer::after{content:'';position:absolute;bottom:100px;left:-120px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(220,38,38,.05),transparent 70%);pointer-events:none}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.06);position:relative;z-index:1}
+.footer-logo{width:140px;height:auto;object-fit:contain;margin-bottom:0.4rem;filter:brightness(0) invert(1)}
+.footer-brand p{font-size:.78rem;color:rgba(255,255,255,.4);line-height:1.5;max-width:280px;margin-bottom:0.6rem}
+.footer-socials{display:flex;gap:.5rem;margin-bottom:0.8rem;flex-wrap:wrap}
+.fsoc{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:.78rem;transition:var(--tr)}
+.fsoc:hover{background:var(--red);border-color:var(--red);color:#fff;transform:translateY(-3px);box-shadow:0 8px 20px rgba(220,38,38,.3)}
+.footer-col h5{font-size:.62rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.5rem;padding-bottom:.35rem;border-bottom:1px solid rgba(255,255,255,.05)}
+.footer-links{display:flex;flex-direction:column;gap:.25rem}
+.footer-link{font-size:.78rem;color:rgba(255,255,255,.45);transition:.2s ease;display:flex;align-items:center;gap:.4rem;padding:.2rem 0}
+.footer-link::before{content:'';width:0;height:1.5px;background:var(--red);border-radius:2px;transition:width .25s ease;flex-shrink:0}
+.footer-link:hover{color:rgba(255,255,255,.85);padding-left:.5rem}
+.footer-link:hover::before{width:12px}
+.footer-newsletter{margin-top:0.4rem}
+.footer-newsletter p{font-size:.72rem;color:rgba(255,255,255,.35);margin-bottom:.4rem;line-height:1.4}
+.fn-input-row{display:flex;gap:.4rem}
+.fn-input-row input{flex:1;padding:.5rem .8rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#fff;font-family:'Inter',sans-serif;font-size:.78rem;outline:none;transition:.2s ease;min-width:0}
+.fn-input-row input::placeholder{color:rgba(255,255,255,.25)}
+.fn-input-row input:focus{border-color:var(--red);background:rgba(255,255,255,.08);box-shadow:0 0 0 3px rgba(220,38,38,.08)}
+.fn-input-row button{background:linear-gradient(135deg,#ef4444,#b91c1c);color:#fff;border:none;border-radius:8px;padding:.5rem .9rem;font-size:.78rem;font-weight:700;cursor:pointer;transition:var(--tr);white-space:nowrap;box-shadow:0 4px 10px rgba(220,38,38,.2);flex-shrink:0}
+.fn-input-row button:hover{background:linear-gradient(135deg,#dc2626,#991b1b)}
+.footer-app-buttons { display: flex; gap: 0.6rem; margin-top: 0.8rem; flex-wrap:wrap; }
+.app-store-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; background: #000; color: #fff; border: none; border-radius: 10px; padding: 0.4rem 1rem; font-size: 0.72rem; font-weight: 600; transition: var(--tr); box-shadow: 0 2px 6px rgba(0,0,0,0.2); min-width: 120px; will-change: transform; }
+.app-store-btn i { font-size: 1.2rem; }
+.app-store-btn span { display: flex; flex-direction: column; line-height: 1.2; }
+.app-store-btn small { font-size: 0.55rem; font-weight: 400; opacity: 0.8; }
+.app-store-btn:hover { background: #1a1a1a; transform: translateY(-2px); box-shadow: 0 6px 14px rgba(0,0,0,0.3); color: #fff; }
+body.dark-mode .app-store-btn { background: #1e1e1e; }
+body.dark-mode .app-store-btn:hover { background: #2a2a2a; }
+.footer-cert-badges { display: flex; justify-content: center; gap: 0.8rem; margin-top: 1rem; flex-wrap:wrap; }
+.fcert-badge { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 6px; padding: 0.3rem 0.9rem; font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,.35); display: inline-flex; align-items: center; gap: 0.3rem; white-space: nowrap; }
+.fcert-badge i { color: var(--red); font-size: 0.7rem; }
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding:0.6rem 0;position:relative;z-index:1;flex-wrap:wrap;gap:.5rem;border-top:none}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.22)}
+.footer-copy a{color:rgba(255,255,255,.38);transition:.2s ease}
+.footer-copy a:hover{color:var(--red)}
+.footer-bottom-links{display:flex;gap:1.2rem;flex-wrap:wrap}
+.footer-bottom-links a{font-size:.72rem;color:rgba(255,255,255,.28);transition:.2s ease}
+.footer-bottom-links a:hover{color:rgba(255,255,255,.65)}
+body.dark-mode .site-footer{background:linear-gradient(160deg,#020509 0%,#050810 100%)}
+
+/* ══════════════════════════════════
+   TABLET BREAKPOINT (≤1100px)
+══════════════════════════════════ */
+@media(max-width:1100px){
+  .footer-top{grid-template-columns:1fr 1fr;gap:2rem}
+  .petrol-services{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ══════════════════════════════════
+   TABLET/MOBILE (≤900px)
+══════════════════════════════════ */
+@media(max-width:900px){
+  .about-inner,.petrol-layout,.franchise-layout,.contact-layout{grid-template-columns:1fr;gap:2.5rem}
+  .nav-menu,.nav-actions .btn{display:none}
+  .hamburger{display:flex}
+  .hero-badges{display:none}
+  .fleet-layout{grid-template-columns:1fr;border-radius:24px}
+  .fleet-img-side{min-height:280px}
+  .fleet-content-side{padding:2.5rem 2rem}
+  .fleet-kpis{grid-template-columns:repeat(3,1fr);gap:.75rem}
+  .fleet-kpi-num{font-size:2.2rem}
+  .fleet-kpi{padding:1rem .75rem}
+  .franchise-img{position:static}
+  .franchise-img img{height:320px}
+  .petrol-layout > div:first-child{order:1}
+  .waie-box{order:2}
+  .contact-card h3 { font-size: 1.3rem; }
+}
+
+/* ══════════════════════════════════
+   MOBILE (≤680px) — Primary mobile
+══════════════════════════════════ */
+@media(max-width:680px){
+  /* Layout */
+  .container,.container-wide{padding:0 1.2rem}
+  section{padding:3rem 0}
+  .about-section,.petrol-section,.franchise-section,.fleet-section,.locator-section,.contact-section{padding:2.5rem 0}
+
+  /* About */
+  .about-pillars{grid-template-columns:1fr}
+  .about-img img{height:260px}
+
+  /* Fuel grades — keep 2 col on mobile for compactness */
+  .fuel-grades{grid-template-columns:1fr 1fr;gap:.75rem}
+  .fuel-octane{font-size:2.6rem}
+  .fuel-card{padding:1.2rem .9rem}
+
+  /* WAFA box */
+  .waie-box{padding:2rem 1.5rem}
+  .waie-box h3{font-size:1.4rem}
+
+  /* Fleet */
+  .fleet-img-side{min-height:220px}
+  .fleet-content-side{padding:2rem 1.5rem}
+  .fleet-kpis{grid-template-columns:repeat(3,1fr);gap:.5rem}
+  .fleet-kpi{padding:.75rem .5rem}
+  .fleet-kpi-num{font-size:2rem}
+  .fleet-kpi-label{font-size:.6rem;letter-spacing:.05em}
+  .fleet-road-tag{bottom:1rem;right:1rem;font-size:.7rem;padding:.5rem .8rem}
+
+  /* Locator */
+  .locator-search-bar{border-radius:14px;padding:.5rem .5rem .5rem 1rem;gap:.5rem}
+  .locator-search-bar input{font-size:.88rem}
+  .locator-search-bar button{padding:.65rem 1.1rem;font-size:.8rem}
+  .locator-search-bar button .btn-icon-text{display:none}
+  .locator-map-mock{height:320px}
+  .map-pin-dot{width:30px;height:30px;font-size:.7rem}
+  .map-overlay-btn{top:.75rem;right:.75rem;padding:.55rem .9rem;font-size:.75rem}
+
+  /* Franchise */
+  .franchise-benefits{grid-template-columns:1fr}
+  .franchise-img img{height:240px}
+  .franchise-layout{gap:2rem}
+
+  /* Contact */
+  .contact-section{padding:2rem 0}
+  .contact-layout{gap:1.5rem}
+  .contact-card,.contact-form-wrap{padding:1.4rem 1.2rem}
+  .contact-card h3{font-size:1.2rem}
+  .cf-row{grid-template-columns:1fr}
+  .cf-group input,.cf-group select,.cf-group textarea{font-size:.9rem;padding:.75rem 1rem}
+
+  /* Footer */
+  .footer-top{grid-template-columns:1fr;gap:2rem}
+  .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
+  .footer-bottom-links{flex-wrap:wrap;justify-content:center}
+  .fn-input-row{gap:.5rem}
+
+  /* Icon buttons — hide text */
+  .icon-btn span{display:none}
+  .icon-btn{padding:.5rem;min-width:40px}
+
+  /* Section title */
+  .section-title{font-size:1.7rem}
+}
+
+/* ══════════════════════════════════
+   SMALL MOBILE (≤480px)
+══════════════════════════════════ */
+@media(max-width:480px){
+  /* Hero */
+  .hero{min-height:100svh}
+  .hero h1{font-size:clamp(1.9rem,8vw,2.6rem);letter-spacing:-.04em}
+  .hero p{font-size:1rem;margin-bottom:1.8rem}
+  .hero-btns{gap:.75rem}
+  .hero-btns .btn{width:100%;justify-content:center}
+  .hero-content{padding:0 1.2rem;justify-content:flex-end;padding-bottom:6rem}
+  .hero-scroll{bottom:2rem}
+
+  /* Fuel grades — single column on very small */
+  .fuel-grades{grid-template-columns:1fr 1fr}
+
+  /* Fleet KPIs */
+  .fleet-kpis{grid-template-columns:repeat(3,1fr)}
+  .fleet-kpi-num{font-size:1.8rem}
+
+  /* Sticky CTA */
+  .sticky-cta{bottom:1.2rem;right:1.2rem}
+  .sticky-btn{width:44px;height:44px;font-size:.95rem}
+
+  /* Map pins smaller */
+  .locator-map-mock{height:260px}
+  .map-pin-dot{width:26px;height:26px;font-size:.6rem}
+  .map-pin-dot{box-shadow:0 0 0 4px rgba(220,38,38,.2),0 4px 12px rgba(220,38,38,.4)}
+
+  /* Typography */
+  .section-title{font-size:1.55rem}
+  .container,.container-wide{padding:0 1rem}
+
+  /* Footer cert badges */
+  .footer-cert-badges{gap:.5rem}
+  .fcert-badge{font-size:.6rem;padding:.25rem .6rem}
+}
+
+/* ══════════════════════════════════
+   VERY SMALL (≤360px) — iPhone SE
+══════════════════════════════════ */
+@media(max-width:360px){
+  .hero h1{font-size:1.75rem}
+  .waie-box{padding:1.5rem 1.1rem}
+  .fleet-content-side{padding:1.5rem 1.1rem}
+  .contact-card,.contact-form-wrap{padding:1.2rem 1rem}
+  .nav-logo-img{width:90px}
+}
+
+/* ══════════════════════════════════
+   TOUCH / HOVER IMPROVEMENTS
+══════════════════════════════════ */
+@media(hover:none) and (pointer:coarse){
+  /* Remove hover-only effects on touch, keep everything visible */
+  .pillar::before{transform:scaleY(0.3);opacity:.4}
+  .fuel-card::before{opacity:.5}
+  .map-pin-label{opacity:1;transform:translateY(0);font-size:.6rem;padding:.22rem .55rem}
+  .mega-link-preview{opacity:.8}
+  /* Ensure large enough tap targets */
+  .drawer-link{min-height:48px}
+  .footer-link{padding:.35rem 0}
+  .footer-socials .fsoc{width:40px;height:40px}
+}
+</style>
+</head>
+<body>
+
+<div class="sticky-cta">
+  <div class="sticky-row">
+    <div class="sticky-label">Back to Top</div>
+    <button class="sticky-btn dark" id="toTop"><i class="fas fa-arrow-up"></i></button>
+  </div>
+</div>
+
+<div class="mobile-drawer" id="drawer">
+  <div class="drawer-bg" onclick="closeDrawer()"></div>
+  <div class="drawer-panel">
+    <button class="drawer-close" onclick="closeDrawer()"><i class="fas fa-times"></i></button>
+    <div class="drawer-logo">
+      <img src="logo.png" alt="Reben Logo" class="drawer-logo-img">
+    </div>
+    <div class="drawer-section">
+      <h5>Petroleum Services</h5>
+      <a class="drawer-link" href="#petroleum"><i class="fas fa-gas-pump"></i> About Our Petrol</a>
+      <a class="drawer-link" href="#petroleum"><i class="fas fa-bolt"></i> Smart Fueling (WAFA)</a>
+      <a class="drawer-link" href="#locator"><i class="fas fa-map-marker-alt"></i> Station Locator</a>
+    </div>
+    <div class="drawer-section">
+      <h5>Transport & Logistics</h5>
+      <a class="drawer-link" href="#transport"><i class="fas fa-truck"></i> About Transport</a>
+      <a class="drawer-link" href="#transport"><i class="fas fa-route"></i> Our Fleet</a>
+      <a class="drawer-link" href="#transport"><i class="fas fa-satellite-dish"></i> GPS Tracking</a>
+    </div>
+    <div class="drawer-section">
+      <h5>Company</h5>
+      <a class="drawer-link" href="#about"><i class="fas fa-building"></i> About Reben</a>
+      <a class="drawer-link" href="#franchise"><i class="fas fa-handshake"></i> Franchise</a>
+      <a class="drawer-link" href="#investor"><i class="fas fa-chart-line"></i> Investor Relations</a>
+      <a class="drawer-link" href="#news"><i class="fas fa-newspaper"></i> News & Media</a>
+      <a class="drawer-link" href="#contact"><i class="fas fa-envelope"></i> Contact Us</a>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="logo.png" alt="Reben Logo" class="nav-logo-img">
+      </a>
+
+      <div class="nav-menu">
+        <div class="nav-item">
+          <a class="nav-link" href="#petroleum">Petroleum Services <i class="fas fa-chevron-down"></i></a>
+          <div class="mega-menu">
+            <div class="mega-grid">
+              <div class="mega-col">
+                <h5>Fuel Retail</h5>
+                <a class="mega-link" href="#petroleum">
+                  <div class="mega-link-icon"><i class="fas fa-gas-pump"></i></div>
+                  <div class="mega-link-text"><strong>About Our Petrol</strong><span>100+ stations across the Kingdom</span></div>
+                  <div class="mega-link-preview"><i class="fas fa-eye"></i></div>
+                </a>
+                <a class="mega-link" href="#petroleum">
+                  <div class="mega-link-icon"><i class="fas fa-fire-flame-curved"></i></div>
+                  <div class="mega-link-text"><strong>Octane 91 / 95 / 98</strong><span>Premium quality fuel grades</span></div>
+                </a>
+                <a class="mega-link" href="#petroleum">
+                  <div class="mega-link-icon"><i class="fas fa-truck-droplet"></i></div>
+                  <div class="mega-link-text"><strong>Diesel & LPG</strong><span>Commercial & industrial supply</span></div>
+                </a>
+              </div>
+              <div class="mega-col">
+                <h5>Smart Fueling</h5>
+                <a class="mega-link" href="#petroleum">
+                  <div class="mega-link-icon"><i class="fas fa-bolt"></i></div>
+                  <div class="mega-link-text"><strong>WAFA Electronic System</strong><span>Cashless, contactless fueling</span></div>
+                </a>
+                <a class="mega-link" href="#locator">
+                  <div class="mega-link-icon"><i class="fas fa-map-location-dot"></i></div>
+                  <div class="mega-link-text"><strong>Station Locator</strong><span>Find nearest Reben station</span></div>
+                </a>
+                <a class="mega-link" href="#petroleum">
+                  <div class="mega-link-icon"><i class="fas fa-mobile-screen"></i></div>
+                  <div class="mega-link-text"><strong>Reben App</strong><span>Loyalty, payments & offers</span></div>
+                </a>
+              </div>
+              <div class="mega-col">
+                <h5>Station Services</h5>
+                <a class="mega-link" href="#petroleum">
+                  <div class="mega-link-icon"><i class="fas fa-car-side"></i></div>
+                  <div class="mega-link-text"><strong>Car Wash & Lube</strong><span>Full service at every station</span></div>
+                </a>
+                <a class="mega-link" href="#petroleum">
+                  <div class="mega-link-icon"><i class="fas fa-store"></i></div>
+                  <div class="mega-link-text"><strong>Convenience Stores</strong><span>Snacks, essentials, coffee</span></div>
+                </a>
+                <a class="mega-link" href="#franchise">
+                  <div class="mega-link-icon"><i class="fas fa-handshake"></i></div>
+                  <div class="mega-link-text"><strong>Franchise</strong><span>Own a Reben station</span></div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a class="nav-link" href="#transport">Transport & Logistics <i class="fas fa-chevron-down"></i></a>
+          <div class="mega-menu">
+            <div class="mega-grid">
+              <div class="mega-col">
+                <h5>Our Fleet</h5>
+                <a class="mega-link" href="#transport">
+                  <div class="mega-link-icon"><i class="fas fa-truck"></i></div>
+                  <div class="mega-link-text"><strong>Fuel Tankers</strong><span>30K–50K L capacity, multi-product</span></div>
+                </a>
+                <a class="mega-link" href="#transport">
+                  <div class="mega-link-icon"><i class="fas fa-truck-pickup"></i></div>
+                  <div class="mega-link-text"><strong>Delivery Trucks</strong><span>Last-mile & commercial delivery</span></div>
+                </a>
+                <a class="mega-link" href="#transport">
+                  <div class="mega-link-icon"><i class="fas fa-wrench"></i></div>
+                  <div class="mega-link-text"><strong>Service Vehicles</strong><span>Mobile maintenance & HSE units</span></div>
+                </a>
+              </div>
+              <div class="mega-col">
+                <h5>Operations</h5>
+                <a class="mega-link" href="#transport">
+                  <div class="mega-link-icon"><i class="fas fa-satellite-dish"></i></div>
+                  <div class="mega-link-text"><strong>Live GPS Tracking</strong><span>Real-time fleet monitoring 24/7</span></div>
+                </a>
+                <a class="mega-link" href="#transport">
+                  <div class="mega-link-icon"><i class="fas fa-route"></i></div>
+                  <div class="mega-link-text"><strong>Dispatch Network</strong><span>Route optimisation & planning</span></div>
+                </a>
+                <a class="mega-link" href="#transport">
+                  <div class="mega-link-icon"><i class="fas fa-warehouse"></i></div>
+                  <div class="mega-link-text"><strong>Depots & Workshops</strong><span>Strategic locations nationwide</span></div>
+                </a>
+              </div>
+              <div class="mega-col">
+                <h5>Logistics Services</h5>
+                <a class="mega-link" href="#transport">
+                  <div class="mega-link-icon"><i class="fas fa-industry"></i></div>
+                  <div class="mega-link-text"><strong>Bulk Fuel Supply</strong><span>Industrial & government contracts</span></div>
+                </a>
+                <a class="mega-link" href="#transport">
+                  <div class="mega-link-icon"><i class="fas fa-plane"></i></div>
+                  <div class="mega-link-text"><strong>Aviation Fuel</strong><span>Jet A1 supply & ground handling</span></div>
+                </a>
+                <a class="mega-link" href="#contact">
+                  <div class="mega-link-icon"><i class="fas fa-file-contract"></i></div>
+                  <div class="mega-link-text"><strong>Request a Contract</strong><span>Tailored logistics proposals</span></div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a class="nav-link" href="#investor">Investor Relations <i class="fas fa-chevron-down"></i></a>
+          <div class="mega-menu narrow">
+            <div class="mega-grid">
+              <div class="mega-col">
+                <h5>Financials</h5>
+                <a class="mega-link" href="#investor"><div class="mega-link-icon"><i class="fas fa-chart-pie"></i></div><div class="mega-link-text"><strong>Annual Reports</strong><span>Audited financial statements</span></div></a>
+                <a class="mega-link" href="#investor"><div class="mega-link-icon"><i class="fas fa-chart-line"></i></div><div class="mega-link-text"><strong>Stock Value</strong><span>TADAWUL: 4200</span></div></a>
+                <a class="mega-link" href="#investor"><div class="mega-link-icon"><i class="fas fa-bell"></i></div><div class="mega-link-text"><strong>Announcements</strong><span>Board & shareholder news</span></div></a>
+                <a class="mega-link" href="#investor"><div class="mega-link-icon"><i class="fas fa-users"></i></div><div class="mega-link-text"><strong>Stakeholder Assessments</strong><span>ESG & governance reports</span></div></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <a class="nav-link" href="#news">Media Center <i class="fas fa-chevron-down"></i></a>
+          <div class="mega-menu narrow">
+            <div class="mega-grid">
+              <div class="mega-col">
+                <h5>Media</h5>
+                <a class="mega-link" href="#news"><div class="mega-link-icon"><i class="fas fa-newspaper"></i></div><div class="mega-link-text"><strong>News & Events</strong><span>Latest company updates</span></div></a>
+                <a class="mega-link" href="#news"><div class="mega-link-icon"><i class="fas fa-images"></i></div><div class="mega-link-text"><strong>Photo Gallery</strong><span>Stations, fleet & events</span></div></a>
+                <a class="mega-link" href="#news"><div class="mega-link-icon"><i class="fas fa-video"></i></div><div class="mega-link-text"><strong>Videos</strong><span>Corporate & brand films</span></div></a>
+                <a class="mega-link" href="#news"><div class="mega-link-icon"><i class="fas fa-bullhorn"></i></div><div class="mega-link-text"><strong>Press Releases</strong><span>Official media statements</span></div></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-item"><a class="nav-link" href="#contact">Contact</a></div>
+      </div>
+
+      <div class="nav-actions">
+        <a href="#franchise" class="btn btn-outline btn-sm magnetic-btn" id="partnerBtn">Become a Partner</a>
+        <a href="YOUR_ARABIC_WEBSITE_URL.html" class="icon-btn" id="langToggle" title="Change Language (AR)"><i class="fas fa-globe"></i> <span>AR</span></a>
+        <button class="icon-btn" id="themeToggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
+        <div class="hamburger" id="hamBtn" onclick="openDrawer()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <video autoplay muted loop playsinline id="heroVideo" poster="reben.jpg">
+    <source src="YOUR_VIDEO_NAME.mp4" type="video/mp4">
+    <img src="reben.jpg" alt="Reben Energy Operations">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content container-wide">
+    <h1><br><em></em></h1>
+    <p></p>
+    <div class="hero-btns"></div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-dot"></div>
+  </div>
+  <div class="hero-badges"></div>
+</section>
+
+<div class="ticker-bar">
+  <div class="ticker-track" id="ticker">
+    <span class="ticker-item"><i class="fas fa-gas-pump"></i> Petrol 91 · 2.18 SAR/L</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item"><i class="fas fa-gas-pump"></i> Petrol 95 · 2.33 SAR/L</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item"><i class="fas fa-fire-flame-curved"></i> Petrol 98 · 2.67 SAR/L</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item"><i class="fas fa-truck"></i> Diesel · 1.10 SAR/L</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item"><i class="fas fa-chart-line"></i> Brent Crude · $84.20/bbl</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item"><i class="fas fa-location-dot"></i> 127 Active Stations · 38 Trucks On Route</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item"><i class="fas fa-star"></i> Reben App — Download Now for Exclusive Offers</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item"><i class="fas fa-gas-pump"></i> Petrol 91 · 2.18 SAR/L</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item"><i class="fas fa-gas-pump"></i> Petrol 95 · 2.33 SAR/L</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item"><i class="fas fa-fire-flame-curved"></i> Petrol 98 · 2.67 SAR/L</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item"><i class="fas fa-truck"></i> Diesel · 1.10 SAR/L</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item"><i class="fas fa-chart-line"></i> Brent Crude · $84.20/bbl</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item"><i class="fas fa-location-dot"></i> 127 Active Stations · 38 Trucks On Route</span>
+    <span class="ticker-sep">|</span>
+    <span class="ticker-item"><i class="fas fa-star"></i> Reben App — Download Now for Exclusive Offers</span>
+    <span class="ticker-sep">|</span>
+  </div>
+</div>
+
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-img fade-up">
+        <img src="about1.png" alt="Reben Energy Operations">
+      </div>
+      <div class="about-text fade-up">
+        <div class="section-label">About Reben</div>
+        <h2 class="section-title">Six decades of fueling the Kingdom forward.</h2>
+        <div class="rule"></div>
+        <p class="section-sub">Reben is a publicly listed joint-stock company on the Saudi Exchange, operating two major divisions: Petroleum Services and Transport & Logistics. We serve millions of customers daily across 14 cities with 127 stations and a modern fleet of 54 vehicles.</p>
+        <div class="about-pillars">
+          <div class="pillar fade-up"><div class="pillar-icon"><i class="fas fa-bullseye"></i></div><div><strong>Our Mission</strong><p>Deliver reliable, safe, and high-quality petroleum products to every corner of the Kingdom.</p></div></div>
+          <div class="pillar fade-up"><div class="pillar-icon"><i class="fas fa-eye"></i></div><div><strong>Our Vision</strong><p>Be the most trusted fuel and logistics partner in the GCC by 2030.</p></div></div>
+          <div class="pillar fade-up"><div class="pillar-icon"><i class="fas fa-leaf"></i></div><div><strong>Sustainability</strong><p>Aligning with Saudi Vision 2030 through green infrastructure and responsible operations.</p></div></div>
+          <div class="pillar fade-up"><div class="pillar-icon"><i class="fas fa-shield-halved"></i></div><div><strong>Safety First</strong><p>Zero-incident culture with ADR-certified drivers and regular safety audits.</p></div></div>
+        </div>
+        <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap"><a href="#about" class="btn btn-primary">Our Story <i class="fas fa-arrow-right"></i></a><a href="#contact" class="btn btn-outline">Talk to Us</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="petrol-section" id="petroleum">
+  <div class="container">
+    <div class="petrol-layout">
+      <div class="fade-up">
+        <div class="section-label">Reben Services</div>
+        <h2 class="section-title">Premium Features.</h2>
+        <div class="rule"></div>
+        <p class="section-sub" style="margin-bottom:2rem">From high-performance Octane 98 to commercial Diesel, every Reben pump delivers internationally benchmarked fuel quality.</p>
+        <div class="fuel-grades">
+          <div class="fuel-card fade-up"><div class="fuel-octane">91</div><div class="fuel-type">Petrol</div><div class="fuel-desc">Standard unleaded. Efficient everyday driving.</div></div>
+          <div class="fuel-card fade-up"><div class="fuel-octane">95</div><div class="fuel-type">Petrol</div><div class="fuel-desc">Mid-grade. Enhanced engine performance.</div></div>
+          <div class="fuel-card fade-up"><div class="fuel-octane">98</div><div class="fuel-type">Premium</div><div class="fuel-desc">High-octane. For performance & luxury vehicles.</div></div>
+          <div class="fuel-card fade-up"><div class="fuel-octane" style="font-size:2.2rem">DSL</div><div class="fuel-type">Diesel</div><div class="fuel-desc">Commercial & industrial grade diesel.</div></div>
+          <div class="fuel-card fade-up"><div class="fuel-octane" style="font-size:2.2rem">LPG</div><div class="fuel-type">Gas</div><div class="fuel-desc">Liquefied petroleum gas. Cost-efficient.</div></div>
+          <div class="fuel-card fade-up"><div class="fuel-octane" style="font-size:2.2rem">A1</div><div class="fuel-type">Jet Fuel</div><div class="fuel-desc">Aviation-grade Jet A1 supply.</div></div>
+        </div>
+      </div>
+      <div class="waie-box fade-up">
+        <div class="waie-label">Smart Technology</div>
+        <h3>WAFA — Electronic Fueling System</h3>
+        <p>WAFA is Reben's proprietary smart-fueling platform. Cashless, contactless, and fully integrated with our loyalty rewards program.</p>
+        <div class="waie-features"><div class="waie-feat"><i class="fas fa-check-circle"></i> NFC & card-tap payment at every pump</div><div class="waie-feat"><i class="fas fa-check-circle"></i> Real-time loyalty points & cashback</div><div class="waie-feat"><i class="fas fa-check-circle"></i> Digital fuel receipts via app</div><div class="waie-feat"><i class="fas fa-check-circle"></i> Fleet account management portal</div><div class="waie-feat"><i class="fas fa-check-circle"></i> Fuel consumption analytics</div><div class="waie-feat"><i class="fas fa-check-circle"></i> Available at 127 stations nationwide</div></div>
+        <div style="display:flex;gap:.8rem;margin-top:1.8rem;flex-wrap:wrap"><a href="#" class="btn btn-primary btn-sm"><i class="fab fa-apple"></i> App Store</a><a href="#" class="btn btn-ghost btn-sm"><i class="fab fa-google-play"></i> Google Play</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="fleet-section" id="transport">
+  <div class="container">
+    <div class="fleet-layout fade-up">
+      <div class="fleet-img-side">
+        <img src="truck.png" alt="Reben Transport Fleet Tanker Truck">
+        <div class="fleet-img-overlay"></div>
+        <div class="fleet-road-tag"><i class="fas fa-satellite-dish"></i> Live GPS Tracking — 24/7</div>
+      </div>
+      <div class="fleet-content-side">
+        <div class="section-label">Transport & Logistics</div>
+        <h2 class="section-title">A fleet built to deliver — every litre, on time.</h2>
+        <div class="rule"></div>
+        <p class="section-sub">Reben's transport division operates one of the Kingdom's most advanced petroleum logistics fleets. ADR-certified tankers, real-time GPS tracking, and route-optimised dispatching ensure every delivery reaches its destination safely and on schedule.</p>
+        <div class="fleet-kpis">
+          <div class="fleet-kpi"><div class="fleet-kpi-num">54</div><div class="fleet-kpi-label">Vehicles</div></div>
+          <div class="fleet-kpi"><div class="fleet-kpi-num">50K</div><div class="fleet-kpi-label">Litre Cap.</div></div>
+          <div class="fleet-kpi"><div class="fleet-kpi-num">14</div><div class="fleet-kpi-label">Cities</div></div>
+        </div>
+        <div class="fleet-features">
+          <div class="fleet-feat"><div class="fleet-feat-icon"><i class="fas fa-satellite-dish"></i></div><div class="fleet-feat-text"><strong>Live GPS & Telematics</strong><span>Real-time tracking, ETA updates, and driver behaviour monitoring.</span></div></div>
+          <div class="fleet-feat"><div class="fleet-feat-icon"><i class="fas fa-shield-halved"></i></div><div class="fleet-feat-text"><strong>ADR-Certified Drivers</strong><span>All drivers hold international hazardous goods transport certification.</span></div></div>
+          <div class="fleet-feat"><div class="fleet-feat-icon"><i class="fas fa-route"></i></div><div class="fleet-feat-text"><strong>Smart Route Optimisation</strong><span>AI-powered dispatch reduces journey time and fuel consumption.</span></div></div>
+          <div class="fleet-feat"><div class="fleet-feat-icon"><i class="fas fa-warehouse"></i></div><div class="fleet-feat-text"><strong>Strategic Depot Network</strong><span>Depots and workshops positioned across 14 cities for rapid deployment.</span></div></div>
+        </div>
+        <a href="#contact" class="btn btn-primary" style="margin-top:.5rem">Request Transport Quote <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="locator-section" id="locator">
+  <div class="container">
+    <div class="locator-head fade-up">
+      <div class="section-label">Station Locator</div>
+      <h2 class="section-title">Find your nearest station.</h2>
+      <div class="rule" style="margin:0.9rem auto 0"></div>
+      <p class="section-sub"></p>
+      <div class="locator-search-bar">
+        <i class="fas fa-search" style="color:var(--gray);flex-shrink:0"></i>
+        <input type="text" id="locatorInput" placeholder="Enter city, district, or postal code…">
+        <button><i class="fas fa-location-arrow"></i> <span class="btn-icon-text">Find Stations</span></button>
+      </div>
+    </div>
+    <div class="locator-map-area fade-up">
+      <div class="locator-map-mock">
+        <div class="map-pin" style="top:30%;left:27%"><div class="map-pin-dot active"><i class="fas fa-gas-pump" style="font-size:.65rem"></i></div><div class="map-pin-label">Riyadh – Al Olaya</div></div>
+        <div class="map-pin" style="top:80%;left:85%"><div class="map-pin-dot active"><i class="fas fa-gas-pump" style="font-size:.65rem"></i></div><div class="map-pin-label">Najran 02</div></div>
+        <div class="map-pin" style="top:50%;left:5%"><div class="map-pin-dot active"><i class="fas fa-gas-pump" style="font-size:.65rem"></i></div><div class="map-pin-label">Najran 05</div></div>
+        <div class="map-pin" style="top:60%;left:27%"><div class="map-pin-dot"><i class="fas fa-gas-pump" style="font-size:.65rem"></i></div><div class="map-pin-label">Riyadh – Al Malaz</div></div>
+        <div class="map-pin" style="top:33%;left:67%"><div class="map-pin-dot active"><i class="fas fa-gas-pump" style="font-size:.65rem"></i></div><div class="map-pin-label">Jeddah – Corniche</div></div>
+        <div class="map-pin" style="top:63%;left:67%"><div class="map-pin-dot"><i class="fas fa-gas-pump" style="font-size:.65rem"></i></div><div class="map-pin-label">Dammam</div></div>
+        <div class="map-pin" style="top:48%;left:47%"><div class="map-pin-dot active"><i class="fas fa-gas-pump" style="font-size:.65rem"></i></div><div class="map-pin-label">Al Qassim</div></div>
+        <div class="map-pin" style="top:22%;left:50%"><div class="map-pin-dot"><i class="fas fa-gas-pump" style="font-size:.65rem"></i></div><div class="map-pin-label">Ha'il</div></div>
+        <div class="map-pin" style="top:75%;left:44%"><div class="map-pin-dot active"><i class="fas fa-gas-pump" style="font-size:.65rem"></i></div><div class="map-pin-label">Abha</div></div>
+        <button class="map-overlay-btn"><i class="fas fa-expand"></i> Open Full Map</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="franchise-section" id="franchise">
+  <div class="container">
+    <div class="franchise-layout">
+      <div class="franchise-img fade-up"><img src="about.png" alt="Franchise Station"></div>
+      <div class="franchise-content fade-up">
+        <div class="section-label">Franchise Opportunities</div>
+        <h2 class="section-title">Own a Reben station — build your future.</h2>
+        <div class="rule"></div>
+        <p class="section-sub">Join the Kingdom's fastest-growing petrol network. We provide everything — brand, training, supply, and ongoing support — so you can focus on success.</p>
+        <div class="franchise-benefits"><div class="fb-item"><i class="fas fa-check-circle"></i> Established brand & national recognition</div><div class="fb-item"><i class="fas fa-check-circle"></i> Full supply chain guaranteed</div><div class="fb-item"><i class="fas fa-check-circle"></i> Comprehensive training program</div><div class="fb-item"><i class="fas fa-check-circle"></i> Marketing & digital support</div><div class="fb-item"><i class="fas fa-check-circle"></i> Technology & WAFA integration</div><div class="fb-item"><i class="fas fa-check-circle"></i> Competitive ROI timeline</div><div class="fb-item"><i class="fas fa-check-circle"></i> Dedicated franchise manager</div><div class="fb-item"><i class="fas fa-check-circle"></i> Financing guidance available</div></div>
+        <div class="franchise-steps"><div class="fstep"><div class="fstep-num">1</div><div class="fstep-body"><strong>Submit Your Application</strong><p>Fill in the franchise inquiry form. Our team reviews within 5 business days.</p></div></div><div class="fstep"><div class="fstep-num">2</div><div class="fstep-body"><strong>Site Feasibility & Approval</strong><p>We conduct a full location study, footfall analysis, and infrastructure assessment.</p></div></div><div class="fstep"><div class="fstep-num">3</div><div class="fstep-body"><strong>Training & Setup</strong><p>Complete Reben operations, safety, and customer service training program.</p></div></div><div class="fstep"><div class="fstep-num">4</div><div class="fstep-body"><strong>Grand Opening</strong><p>We support your launch with marketing, supply, and on-ground team presence.</p></div></div></div>
+        <a href="#contact" class="btn btn-primary" style="margin-top:1rem">Apply for Franchise <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div style="text-align:center;max-width:600px;margin:0 auto 2rem">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title"></h2>
+      <div class="rule" style="margin:0.9rem auto 0"></div>
+    </div>
+    <div class="contact-layout">
+      <div class="contact-card fade-up">
+        <div class="contact-card-label">Contact Reben</div>
+        <h3>Let's talk about your energy needs.</h3>
+        <p>Franchise, bulk supply, logistics — we're ready to help.</p>
+        <div class="contact-info-list">
+          <div class="contact-info-item"><div class="ci-icon"><i class="fas fa-location-dot"></i></div><div class="ci-body"><strong>Head Office</strong><span>Reben Tower, King Fahd Road<br>Riyadh, Saudi Arabia 12244</span></div></div>
+          <div class="contact-info-item"><div class="ci-icon"><i class="fas fa-phone"></i></div><div class="ci-body"><strong>Phone</strong><span>+966 11 234 5678<br>Sun–Thu · 8AM – 6PM</span></div></div>
+          <div class="contact-info-item"><div class="ci-icon"><i class="fas fa-envelope"></i></div><div class="ci-body"><strong>Email</strong><span>info@reben.com.sa<br>franchise@reben.com.sa</span></div></div>
+          <div class="contact-info-item"><div class="ci-icon"><i class="fas fa-headset"></i></div><div class="ci-body"><strong>24/7 Hotline</strong><span>920 012 345 · Fleet & emergencies</span></div></div>
+        </div>
+      </div>
+      <div class="contact-form-wrap fade-up">
+        <h3>Send us a message</h3>
+        <p>We'll respond within one business day.</p>
+        <div class="cf-row">
+          <div class="cf-group"><label>First Name</label><input type="text" placeholder="Ahmad"></div>
+          <div class="cf-group"><label>Last Name</label><input type="text" placeholder="Al-Rashidi"></div>
+        </div>
+        <div class="cf-row">
+          <div class="cf-group"><label>Email</label><input type="email" placeholder="ahmad@company.com"></div>
+          <div class="cf-group"><label>Phone</label><input type="tel" placeholder="+966 5X XXX XXXX"></div>
+        </div>
+        <div class="cf-group">
+          <label>Inquiry Type</label>
+          <select><option disabled selected>Select a topic…</option><option>Franchise Opportunity</option><option>Bulk Fuel Supply</option><option>Transport & Logistics</option><option>Investor Relations</option><option>Media & Press</option><option>General Inquiry</option></select>
+        </div>
+        <div class="cf-group"><label>Message</label><textarea placeholder="How can we help?"></textarea></div>
+        <button class="cf-submit" type="button"><i class="fas fa-paper-plane"></i> Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="logo.png" alt="Reben Logo" class="footer-logo">
+        <p>Saudi Arabia's leading petroleum retail and transport logistics company. Six decades of fueling the Kingdom forward — station by station.</p>
+        <div class="footer-socials">
+          <a href="#" class="fsoc" title="Twitter/X"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="fsoc" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="fsoc" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="fsoc" title="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="fsoc" title="Snapchat"><i class="fab fa-snapchat"></i></a>
+        </div>
+        <div class="footer-app-buttons">
+          <a href="#" class="app-store-btn"><i class="fab fa-apple"></i><span><small>Download on the</small>App Store</span></a>
+          <a href="#" class="app-store-btn"><i class="fab fa-google-play"></i><span><small>GET IT ON</small>Google Play</span></a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Petroleum Services</h5><div class="footer-links"><a href="#petroleum" class="footer-link">Fuel Grades 91 / 95 / 98</a><a href="#petroleum" class="footer-link">Diesel &amp; LPG Supply</a><a href="#petroleum" class="footer-link">Jet A1 Aviation Fuel</a><a href="#petroleum" class="footer-link">WAFA Smart Fueling</a><a href="#petroleum" class="footer-link">Car Wash &amp; Lube</a><a href="#petroleum" class="footer-link">Convenience Stores</a><a href="#locator" class="footer-link">Station Locator</a></div></div>
+      <div class="footer-col"><h5>Company</h5><div class="footer-links"><a href="#about" class="footer-link">About Reben</a><a href="#franchise" class="footer-link">Franchise Opportunities</a><a href="#transport" class="footer-link">Transport &amp; Fleet</a><a href="#investor" class="footer-link">Investor Relations</a><a href="#news" class="footer-link">Media Center</a><a href="#" class="footer-link">Careers</a><a href="#" class="footer-link">Sustainability &amp; ESG</a></div></div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <div class="footer-links">
+          <a href="#contact" class="footer-link">Get In Touch</a>
+          <a href="tel:+966112345678" class="footer-link">+966 11 234 5678</a>
+          <a href="mailto:info@reben.com.sa" class="footer-link">info@reben.com.sa</a>
+          <a href="#" class="footer-link">Download Reben App</a>
+          <a href="#" class="footer-link">TADAWUL: 4200</a>
+        </div>
+        <div class="footer-newsletter">
+          <p>Subscribe for fuel updates &amp; exclusive offers:</p>
+          <div class="fn-input-row"><input type="email" placeholder="your@email.com"><button>Subscribe</button></div>
+        </div>
+        <div class="footer-cert-badges">
+          <div class="fcert-badge"><i class="fas fa-award"></i> ISO 9001 Certified</div>
+          <div class="fcert-badge"><i class="fas fa-leaf"></i> Vision 2030 Partner</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2025 Reben Petroleum &amp; Transport Services Co. All rights reserved. &nbsp;·&nbsp; <a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms of Use</a></div>
+      <div class="footer-bottom-links"><a href="#">Sitemap</a><a href="#">Cookie Settings</a><a href="#">Accessibility</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  const nb = document.getElementById('navbar');
+  const stickyCta = document.querySelector('.sticky-cta');
+  
+  window.addEventListener('scroll', () => { 
+    const scrolled = window.scrollY > 80;
+    nb.classList.toggle('floating', scrolled);
+    nb.classList.toggle('scrolled-logo', window.scrollY > 30);
+    if(stickyCta) stickyCta.classList.toggle('visible', window.scrollY > 300);
+  }, { passive: true });
+
+  document.getElementById('toTop').addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
+
+  window.openDrawer = () => { document.getElementById('drawer').classList.add('drawer-open'); document.body.style.overflow = 'hidden'; };
+  window.closeDrawer = () => { document.getElementById('drawer').classList.remove('drawer-open'); document.body.style.overflow = ''; };
+
+  // Close drawer on ESC key
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeDrawer(); });
+
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = themeToggle.querySelector('i');
+  
+  if (document.body.classList.contains('dark-mode')) {
+    themeIcon.classList.remove('fa-moon');
+    themeIcon.classList.add('fa-sun');
+  }
+  
+  themeToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    document.body.classList.toggle('dark-mode');
+    if (document.body.classList.contains('dark-mode')) {
+      themeIcon.classList.remove('fa-moon');
+      themeIcon.classList.add('fa-sun');
+    } else {
+      themeIcon.classList.remove('fa-sun');
+      themeIcon.classList.add('fa-moon');
+    }
+  });
+
+  const langToggle = document.getElementById('langToggle');
+
+  // Magnetic button (desktop only)
+  const magneticBtn = document.querySelector('.magnetic-btn');
+  if(magneticBtn && window.matchMedia('(hover: hover)').matches) {
+    magneticBtn.addEventListener('mousemove', (e) => {
+      const rect = magneticBtn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width/2;
+      const y = e.clientY - rect.top - rect.height/2;
+      magneticBtn.style.transform = `translate(${x*0.15}px, ${y*0.15}px)`;
+    });
+    magneticBtn.addEventListener('mouseleave', () => { magneticBtn.style.transform = 'translate(0,0)'; });
+  }
+
+  // Active section highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  function setActiveLink() {
+    let current = '';
+    sections.forEach(s => {
+      const sectionTop = s.offsetTop - 100;
+      if(window.scrollY >= sectionTop) { current = s.getAttribute('id'); }
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active-section');
+      const href = link.getAttribute('href').substring(1);
+      if(href === current) link.classList.add('active-section');
+    });
+  }
+  window.addEventListener('scroll', setActiveLink, { passive: true });
+  window.addEventListener('load', setActiveLink);
+
+  // GSAP animations
+  window.addEventListener('load', () => {
+    if(typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined'){
+      gsap.registerPlugin(ScrollTrigger);
+      document.querySelectorAll('.fade-up').forEach((el) => {
+        gsap.fromTo(el, 
+          { opacity: 0, y: 44 }, 
+          { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', 
+            scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+          });
+      });
+    } else {
+      // Fallback if GSAP not loaded: show all elements
+      document.querySelectorAll('.fade-up').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+    }
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const h = a.getAttribute('href');
+      if(!h || h === '#') return;
+      const t = document.querySelector(h);
+      if(t) { 
+        e.preventDefault(); 
+        closeDrawer(); 
+        setTimeout(() => t.scrollIntoView({behavior: 'smooth', block: 'start'}), 50);
+      }
+    });
+  });
+
+  // Locator search
+  const locatorBtn = document.querySelector('.locator-search-bar button');
+  if(locatorBtn) locatorBtn.addEventListener('click', () => {
+    const v = document.getElementById('locatorInput')?.value.trim();
+    if(v) alert('Searching for stations near: ' + v + '\n(Connect to a real maps API to activate.)');
+  });
+
+  // Map pins — show label on tap (mobile)
+  document.querySelectorAll('.map-pin').forEach(pin => {
+    pin.addEventListener('click', function() {
+      // Toggle label visibility on tap
+      const label = this.querySelector('.map-pin-label');
+      if(label) {
+        const isVisible = label.style.opacity === '1';
+        // Hide all others
+        document.querySelectorAll('.map-pin-label').forEach(l => { l.style.opacity='0'; l.style.transform='translateY(5px)'; });
+        if(!isVisible) { label.style.opacity='1'; label.style.transform='translateY(0)'; }
+      }
+    });
+  });
+
+  if(window.scrollY > 80) nb.classList.add('floating');
+  if(window.scrollY > 30) nb.classList.add('scrolled-logo');
+})();
+</script>
+</body>
+</html>
